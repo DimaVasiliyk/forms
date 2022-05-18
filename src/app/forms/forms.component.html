@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="wrapper-age-form">
+    <form class="example-form">
+      <span>Age</span>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Favorite food</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="">
+      </mat-form-field>
+    </form>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <h2 class="example-h2">Checkbox configuration</h2>
+      <section class="example-section">
+        <label class="example-margin">Align:</label>
+        <mat-radio-group (ngModel)="labelPosition">
+          <mat-radio-button class="example-margin" value="after">After</mat-radio-button>
+          <mat-radio-button class="example-margin" value="before">Before</mat-radio-button>
+        </mat-radio-group>
+      </section>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
