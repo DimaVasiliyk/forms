@@ -1,26 +1,62 @@
 <div class="wrapper">
-  <div class="wrapper-age-form">
-    <form class="example-form">
-      <span>Age</span>
+<div class="wrapp-form">
+  <form [formGroup]="form">
+    <div class="wrapper-age-form">
+      <span>{{ questions.patientQuestions[0].title }}</span>
       <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="">
+        <input matInput placeholder="" formControlName="age" value="" />
       </mat-form-field>
-    </form>
+  
+
+    <div class="wrapper-radio">
+      <label> {{ questions.patientQuestions[1].title }}</label>
+      <mat-radio-group formControlName="check">
+        <mat-radio-button name="check"  value="1"></mat-radio-button>
+        <mat-radio-button name="check" value="0" ></mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div *ngIf="form.get('check')?.value == 1">    
+      <div  class="select-wrapp">                                       
+      <span c>Select medication</span>
+      <mat-form-field class="select" appearance="outline" class="field-select">
+        <mat-select formControlName="medication">
+          <div *ngFor="let quest of questions.patientQuestions">
+            <div *ngFor="let item of quest.childItems">
+              <mat-option *ngFor="let option of item.options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </div>
+          </div>
+        </mat-select>
+      </mat-form-field>
+      </div>    
+
+      <div  class="wrapper-number" *ngIf="form.get('medication')?.value == 'Aspirin'">
+        <span title>{{questions.patientQuestions[1].childItems[0].childItems[0].title }}</span>
+        <mat-form-field class="number-placeholder"appearance="outline">
+          <input type="number" min="0" matInput [value]="" />
+        </mat-form-field>
+
+        <div class="wrapper-radio">
+          <label>{{questions.patientQuestions[1].childItems[0].childItems[1].title}}</label>
+          <mat-radio-group formControlName="checkWater">
+            <mat-radio-button name="check" value="1"></mat-radio-button>
+            <mat-radio-button name="check" value="0"></mat-radio-button>
+          </mat-radio-group>
+        </div>
+        
+        <div class="wrapper-radio" *ngIf="form.get('checkWater')?.value == 1">
+          <label class="example-margin">{{questions.patientQuestions[1].childItems[0].childItems[1].childItems[0].title}}</label>
+          <mat-radio-group>
+            <mat-radio-button value="1"></mat-radio-button>
+            <mat-radio-button value="0"></mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <mat-card>
-    <mat-card-content>
-      <h2 class="example-h2">Checkbox configuration</h2>
-      <section class="example-section">
-        <label class="example-margin">Align:</label>
-        <mat-radio-group (ngModel)="labelPosition">
-          <mat-radio-button class="example-margin" value="after">After</mat-radio-button>
-          <mat-radio-button class="example-margin" value="before">Before</mat-radio-button>
-        </mat-radio-group>
-      </section>
-    </mat-card-content>
-  </mat-card>
-
+  </form>
 </div>
 
+</div>

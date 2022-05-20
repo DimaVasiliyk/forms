@@ -5,7 +5,7 @@
             "type": "number"
         },
         {
-            "title": "Are you using any heart medications ?",
+            "title": "Are you usin g any heart medications ?",
             "type": "radio",
             "childItems": [
                 {
