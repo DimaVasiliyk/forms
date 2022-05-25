@@ -1,1 +1,29 @@
-<app-forms></app-forms>
+<div class="wrapper" >
+<div class="wrapp-form">
+  <form [formGroup]="form" (ngSubmit)="send()">
+    <div  *ngFor="let question of questions.patientQuestions">
+
+      <ng-container *ngTemplateOutlet="templateRef; context: { cellvalue: question }"></ng-container>
+
+      <ng-template #templateRef let-cellvalues="cellvalue">
+        {{ cellvalues.title }}
+        <div [ngSwitch]="cellvalues.type">
+          <app-radio *ngSwitchCase="'radio'" formControlName="{{cellvalues.formControlName}}"></app-radio>
+          <app-select *ngSwitchCase="'select'" formControlName="{{cellvalues.formControlName}}" [options]="cellvalues.options"></app-select>
+          <app-number *ngSwitchCase="'number'" formControlName="{{cellvalues.formControlName}}" ></app-number>
+        </div>
+
+        <ng-container *ngIf="cellvalues.childItems">
+
+          <ng-container *ngFor="let childQuestion of cellvalues.childItems">
+            <ng-container *ngIf="form.get(cellvalues.formControlName)?.value == childQuestion?.parentAnswer || !childQuestion?.parentAnswer " >
+              <ng-container *ngTemplateOutlet=" templateRef; context: { cellvalue: childQuestion }"></ng-container>
+            </ng-container>
+          </ng-container> 
+        </ng-container> 
+      </ng-template>
+
+    </div>
+  </form>
+</div>
+</div>

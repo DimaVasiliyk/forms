@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,10 +17,18 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BoxComponent } from './box/box.component';
+import { RadioComponent } from './radio/radio.component';
+import { SelectComponent } from './select/select.component';
+import { NumberComponent } from './number/number.component';
 @NgModule({
-  declarations: [	
+  declarations: [				
     AppComponent,
-      FormsComponent,
+    FormsComponent,
+    BoxComponent,
+    RadioComponent,
+    SelectComponent,
+      NumberComponent
    ],
   imports: [
     ReactiveFormsModule,
